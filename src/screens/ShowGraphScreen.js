@@ -14,11 +14,12 @@ const ShowGraphScreen = ({ navigation }) => {
     return data.id == id;
   });
 
-  const data = JSON.stringify(habit.habitData);
-
+  const data = JSON.stringify(habit);
+  const abc = data[0].habitData;
   return (
     <>
       <Text>ShowGraphScreen- {navigation.getParam("id")}</Text>
+      {console.log("abc:", abc)}
       {console.log("data:", data)}
       {console.log("habit:", habit)}
       {/* <VictoryChart
