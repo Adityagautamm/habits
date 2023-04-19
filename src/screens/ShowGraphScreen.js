@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text, Button, FlatList } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Button,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import {
   VictoryBar,
   VictoryChart,
@@ -14,15 +21,12 @@ const ShowGraphScreen = ({ navigation }) => {
     return data.id == id;
   });
 
-  const data = JSON.stringify(habit);
-  const abc = data[0].habitData;
+  const data = habit[0].habitData;
+
   return (
     <>
       <Text>ShowGraphScreen- {navigation.getParam("id")}</Text>
-      {console.log("abc:", abc)}
-      {console.log("data:", data)}
-      {console.log("habit:", habit)}
-      {/* <VictoryChart
+      <VictoryChart
         width={400}
         theme={VictoryTheme.material}
         domainPadding={20}
@@ -40,7 +44,13 @@ const ShowGraphScreen = ({ navigation }) => {
             <Text>No data found</Text>
           )}
         </VictoryStack>
-      </VictoryChart> */}
+      </VictoryChart>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("AddHabitData", { id: id })}
+      >
+        <Text>Add Data</Text>
+      </TouchableOpacity>
     </>
   );
 };

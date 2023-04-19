@@ -7,12 +7,14 @@ import { Provider } from "react-redux";
 import HomeScreen from "./src/screens/HomeScreen";
 import CreateHobbyScreen from "./src/screens/CreateHobbyScreen";
 import ShowGraphScreen from "./src/screens/ShowGraphScreen";
+import AddHabitDataScreen from "./src/screens/AddHabitDataScreen";
 
 const switchNavigator = createSwitchNavigator({
   initialFlow: createStackNavigator({
     Home: HomeScreen,
     CreateHobby: CreateHobbyScreen,
     GraphScreen: ShowGraphScreen,
+    AddHabitData: AddHabitDataScreen,
   }),
 });
 
