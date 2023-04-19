@@ -5,8 +5,8 @@ const initialState = [
     id: 1,
     habitName: "First Habit",
     habitData: [
-      { quarter: 1, earnings: 13000 },
-      { quarter: 2, earnings: 16500 },
+      { date: 1, data: 13000 },
+      { date: 2, data: 16500 },
     ],
   },
 ];
@@ -23,6 +23,11 @@ const habitSlice = createSlice({
         habitData: null,
       });
     },
+    addData: (state, action) => {
+      console.log("action", action);
+      const index = state.findIndex((habit) => habit.id === action.payload.id);
+      state[index].habitData.push(action.payload.habitData);
+    },
     removeHabit: (state, action) => {
       state;
     },
@@ -30,4 +35,4 @@ const habitSlice = createSlice({
 });
 
 export default habitSlice.reducer;
-export const { addHabbit } = habitSlice.actions;
+export const { addHabbit, addData } = habitSlice.actions;

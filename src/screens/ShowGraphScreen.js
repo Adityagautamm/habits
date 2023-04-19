@@ -37,8 +37,8 @@ const ShowGraphScreen = ({ navigation }) => {
               style={{ data: { fill: "#c43a31" } }}
               alignment="start"
               data={data}
-              x="quarter"
-              y="earnings"
+              x="date"
+              y="data"
             />
           ) : (
             <Text>No data found</Text>

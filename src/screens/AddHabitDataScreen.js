@@ -7,18 +7,13 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import { addHabbit } from "../features/habitSlice";
+import { addData } from "../features/habitSlice";
 import { useDispatch } from "react-redux";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 const AddHabitDataScreen = ({ navigation }) => {
   const id = navigation.getParam("id");
   const dispatch = useDispatch();
-  const submitHabit = () => {
-    // dispatch(addHabbit(name));
-    // setName(null);
-    // navigation.navigate("Home");
-  };
 
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState("date");
@@ -27,6 +22,17 @@ const AddHabitDataScreen = ({ navigation }) => {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setDate(currentDate);
+  };
+
+  const submitData = () => {
+    dispatch(
+      addData({
+        id: id,
+        habitData: { date: date.toLocaleDateString(), data: content },
+      })
+    );
+    setDate(new Date());
+    setContent("");
   };
 
   const DTPicker = () => (
@@ -59,7 +65,7 @@ const AddHabitDataScreen = ({ navigation }) => {
         value={content}
         onChangeText={(text) => setContent(text)}
       />
-      <Button title="Add Data" onPress={submitHabit} />
+      <Button title="Add Data" onPress={submitData} />
     </>
   );
 };
