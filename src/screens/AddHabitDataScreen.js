@@ -19,6 +19,13 @@ const AddHabitDataScreen = ({ navigation }) => {
   const [mode, setMode] = useState("date");
   const [content, setContent] = useState("");
 
+  const dateFormatter = (date) => {
+    function pad2(n) {
+      return n < 10 ? "0" + n : n;
+    }
+    return date.getDate() + pad2(date.getMonth() + 1);
+  };
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setDate(currentDate);
@@ -28,7 +35,8 @@ const AddHabitDataScreen = ({ navigation }) => {
     dispatch(
       addData({
         id: id,
-        habitData: { date: date.toLocaleDateString(), data: content },
+        // habitData: { date: date.toLocaleDateString(), data: content },
+        habitData: { date: dateFormatter(date), data: content },
       })
     );
     setDate(new Date());

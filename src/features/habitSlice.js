@@ -25,7 +25,13 @@ const habitSlice = createSlice({
     },
     addData: (state, action) => {
       console.log("action", action);
-      const index = state.findIndex((habit) => habit.id === action.payload.id);
+      const index = state.findIndex((habit) => {
+        console.log("habit in find index", habit);
+        console.log("habit id", habit.id);
+        console.log("payload id", action.payload.id);
+        habit.id === action.payload.id;
+      });
+      console.log("index", index);
       state[index].habitData.push(action.payload.habitData);
     },
     removeHabit: (state, action) => {
