@@ -25,14 +25,36 @@ const habitSlice = createSlice({
     },
     addData: (state, action) => {
       console.log("action", action);
-      const index = state.findIndex((habit) => {
-        console.log("habit in find index", habit);
-        console.log("habit id", habit.id);
-        console.log("payload id", action.payload.id);
-        habit.id === action.payload.id;
-      });
-      console.log("index", index);
-      state[index].habitData.push(action.payload.habitData);
+
+      const data = state.find((data) => data.id === action.payload.id);
+      console.log("data is", data);
+      if (data) {
+        const updatedHabitData = data.habitData
+          ? [...data.habitData, action.payload.habitData]
+          : [action.payload.habitData];
+        data.habitData = updatedHabitData;
+        console.log("new data", data.habitData);
+      }
+      return state;
+      // state.map((data) => {
+      //   console.log("data is", data);
+      //   if (data.id === action.payload.id) {
+      //     const updatedHabitData = [
+      //       ...data.habitData,
+      //       action.payload.habitData,
+      //     ];
+      //     console.log("updated habit data", updatedHabitData);
+      //     return { ...data, habitData: updatedHabitData };
+      //   }
+      // });
+      // console.log("updated state", state);
+      // return state;
+
+      // const index = state.findIndex((habit) => {
+      //   habit.id === action.payload.id;
+      // });
+      // console.log("index", index);
+      // state[index].habitData.push(action.payload.habitData);
     },
     removeHabit: (state, action) => {
       state;
