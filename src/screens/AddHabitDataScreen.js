@@ -36,7 +36,10 @@ const AddHabitDataScreen = ({ navigation }) => {
       addData({
         id: id,
         // habitData: { date: date.toLocaleDateString(), data: content },
-        habitData: { date: dateFormatter(date), data: content },
+        habitData: {
+          date: parseInt(dateFormatter(date)),
+          data: parseFloat(content),
+        },
       })
     );
     setDate(new Date());
